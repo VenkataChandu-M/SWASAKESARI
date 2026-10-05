@@ -16,7 +16,8 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY', 'default-unsafe-flask-key')
 
     # Database
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'sampurna.db')
+    DB_PATH = os.path.join('/tmp', 'sampurna.db') if os.environ.get('VERCEL') else os.path.join(BASE_DIR, 'sampurna.db')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DB_PATH
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # JWT
