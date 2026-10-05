@@ -1,8 +1,6 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index" },
-    { "source": "/admin", "destination": "/web/ayurvedic-website/admin.html" },
-    { "source": "/dashboard", "destination": "/web/ayurvedic-website/dashboard.html" },
-    { "source": "/(.*)", "destination": "/web/ayurvedic-website/$1" }
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/dashboard", "destination": "/dashboard.html" }
   ]
 }

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your Sampurna Ayurvedic dashboard - track orders, manage profile.">
+    <title>My Dashboard | Sampurna Ayurvedic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body class="dashboard-body">
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🌿</span>
+                <span class="logo-text">Sampurna Ayurvedic</span>
+            </a>
+            <div class="dash-nav-links">
+                <a href="/" class="dash-nav-link">← Back to Store</a>
+                <div class="user-menu" id="navUserMenu">
+                    <button class="user-menu-trigger" onclick="document.getElementById('userDropdown').classList.toggle('show')">
+                        <span class="user-avatar">👤</span>
+                        <span class="user-name" id="navUserName">User</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="#" onclick="handleLogout(); return false;">🚪 Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- Welcome Header -->
+            <div class="dash-welcome">
+                <div>
+                    <h1 class="dash-title">Welcome, <span id="dashUserName" class="highlight">User</span></h1>
+                    <p class="dash-subtitle">Manage your orders and profile</p>
+                </div>
+                <div class="dash-verification-badge" id="verificationBadge">
+                    <span class="badge-icon" id="badgeIcon">⏳</span>
+                    <span id="badgeText">Unverified</span>
+                </div>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="dash-stats">
+                <div class="dash-stat-card">
+                    <div class="dash-stat-icon">📦</div>
+                    <div class="dash-stat-value" id="totalOrders">0</div>
+                    <div class="dash-stat-label">Total Orders</div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="dash-stat-icon">💰</div>
+                    <div class="dash-stat-value" id="totalSpent">₹0</div>
+                    <div class="dash-stat-label">Total Spent</div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="dash-stat-icon">📧</div>
+                    <div class="dash-stat-value" id="userEmail">-</div>
+                    <div class="dash-stat-label">Email</div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="dash-stat-icon">📱</div>
+                    <div class="dash-stat-value" id="userPhone">-</div>
+                    <div class="dash-stat-label">Phone</div>
+                </div>
+            </div>
+
+            <!-- Dashboard Tabs -->
+            <div class="dash-tabs">
+                <button class="dash-tab active" onclick="switchDashTab(this, 'ordersTab')">📦 My Orders</button>
+                <button class="dash-tab" onclick="switchDashTab(this, 'profileTab')">👤 Profile</button>
+            </div>
+
+            <!-- Orders Tab -->
+            <div class="dash-panel active" id="ordersTab">
+                <div id="ordersContent">
+                    <div class="dash-loading">Loading your orders...</div>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div class="dash-panel" id="profileTab">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">👤</div>
+                        <div>
+                            <h3 id="profileName">-</h3>
+                            <p id="profileEmail">-</p>
+                        </div>
+                    </div>
+                    <form id="profileForm" class="profile-form">
+                        <div class="modal-form-group">
+                            <label for="editName">Full Name</label>
+                            <input type="text" id="editName" placeholder="Your name" required>
+                        </div>
+                        <div class="modal-form-group">
+                            <label for="editPhone">Phone Number</label>
+                            <input type="tel" id="editPhone" placeholder="+91 XXXXX XXXXX">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Order Detail Modal -->
+    <div class="auth-modal" id="orderDetailModal">
+        <div class="auth-modal-content" style="max-width:520px;">
+            <button class="modal-close" onclick="ModalController.close('orderDetailModal')">✕</button>
+            <div class="modal-header">
+                <span class="modal-icon">📦</span>
+                <h3>Order Details</h3>
+                <p id="orderDetailId">Order #-</p>
+            </div>
+            <div id="orderDetailContent">
+                <!-- Filled dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
