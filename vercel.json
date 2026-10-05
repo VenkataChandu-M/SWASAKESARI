@@ -4,44 +4,12 @@
     {
       "src": "web/ayurvedic-website/backend/app.py",
       "use": "@vercel/python"
-    },
-    {
-      "src": "web/ayurvedic-website/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "web/ayurvedic-website/backend/app.py"
-    },
-    {
-      "src": "/admin",
-      "dest": "web/ayurvedic-website/admin.html"
-    },
-    {
-      "src": "/dashboard",
-      "dest": "web/ayurvedic-website/dashboard.html"
-    },
-    {
-      "src": "/css/(.*)",
-      "dest": "web/ayurvedic-website/css/$1"
-    },
-    {
-      "src": "/js/(.*)",
-      "dest": "web/ayurvedic-website/js/$1"
-    },
-    {
-      "src": "/swasa kesari .glb",
-      "dest": "web/ayurvedic-website/swasa kesari .glb"
-    },
-    {
-      "src": "/",
-      "dest": "web/ayurvedic-website/index.html"
-    },
-    {
       "src": "/(.*)",
-      "dest": "web/ayurvedic-website/$1"
+      "dest": "web/ayurvedic-website/backend/app.py"
     }
   ]
 }
