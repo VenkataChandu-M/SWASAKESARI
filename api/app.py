@@ -33,33 +33,47 @@ def check_if_token_revoked(jwt_header, jwt_payload):
     return jwt_payload['jti'] in BLOCKLIST
 
 
-# ==========================================
-# Static File Serving
-# ==========================================
+def find_static_file(rel_path):
+    base_dirs = [
+        Config.STATIC_FOLDER,
+        os.path.abspath(os.path.dirname(__file__)),
+        os.path.abspath(os.path.join(os.path.dirname(__file__), '..')),
+        os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'public')),
+        os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'web', 'ayurvedic-website')),
+        os.getcwd()
+    ]
+    for bdir in base_dirs:
+        full_path = os.path.normpath(os.path.join(bdir, rel_path))
+        if os.path.isfile(full_path):
+            return bdir, rel_path
+    return None, None
+
+
+def send_static_file(rel_path):
+    bdir, file_rel = find_static_file(rel_path)
+    if bdir and file_rel:
+        return send_from_directory(bdir, file_rel)
+    return jsonify({'error': f'File {rel_path} not found'}), 404
+
 
 @app.route('/')
 def serve_index():
-    return send_from_directory(Config.STATIC_FOLDER, 'index.html')
+    return send_static_file('index.html')
 
 
 @app.route('/dashboard')
 def serve_dashboard():
-    return send_from_directory(Config.STATIC_FOLDER, 'dashboard.html')
+    return send_static_file('dashboard.html')
 
 
 @app.route('/admin')
 def serve_admin():
-    return send_from_directory(Config.STATIC_FOLDER, 'admin.html')
+    return send_static_file('admin.html')
 
 
 @app.route('/<path:filename>')
 def serve_static(filename):
-    file_path = os.path.join(Config.STATIC_FOLDER, filename)
-    if os.path.isfile(file_path):
-        directory = os.path.dirname(file_path)
-        basename = os.path.basename(file_path)
-        return send_from_directory(directory, basename)
-    return jsonify({'error': 'Not found'}), 404
+    return send_static_file(filename)
 
 
 # ==========================================
