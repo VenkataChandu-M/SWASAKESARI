@@ -1,7 +1,30 @@
 {
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.py" },
-    { "source": "/admin", "destination": "/admin.html" },
-    { "source": "/dashboard", "destination": "/dashboard.html" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": [
+          "index.html",
+          "dashboard.html",
+          "admin.html",
+          "swasa kesari .glb",
+          "css/**",
+          "js/**",
+          "web/**"
+        ]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "api/index.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "api/index.py"
+    }
   ]
 }
