@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Discover the ancient wisdom of Ayurveda. Premium herbal supplements crafted from nature's finest ingredients for holistic wellness.">
+    <title> Sampurna Ayurvedic| Ancient Ayurvedic Wellness</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Google Model Viewer for 3D GLB -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+
+<body>
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">🌿</span>
+                <span class="logo-text">Sampurna Ayurvedic</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" data-en="Home" data-te="హోమ్">Home</a></li>
+                <li><a href="#product-journey" data-en="Product" data-te="ఉత్పత్తి">Product</a></li>
+                <li><a href="#testimonials" data-en="Testimonials" data-te="సమీక్షలు">Testimonials</a></li>
+                <li><a href="#contact" data-en="Contact Us" data-te="సంప్రదించండి">Contact Us</a></li>
+                <li><a href="#" class="nav-cta nav-dashboard-link" onclick="goToDashboard(); return false;" data-en="Dashboard" data-te="డాష్‌బోర్డ్">📊 Dashboard</a></li>
+                <li id="mobileLoginBtn"><a href="#" class="nav-cta" onclick="ModalController.open('loginModal'); return false;" data-en="Login" data-te="లాగిన్">Login</a></li>
+                <li id="mobileUserInfo" style="display:none;"><a href="#" onclick="AuthManager.logout(); return false;" data-en="Logout" data-te="లాగౌట్">Logout</a></li>
+            </ul>
+            <div class="nav-auth">
+                <button class="btn-login" id="navLoginBtn" onclick="ModalController.open('loginModal')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <span data-en="Login" data-te="లాగిన్">Login</span>
+                </button>
+                <div class="user-menu" id="navUserMenu" style="display:none;">
+                    <button class="user-menu-trigger" onclick="document.getElementById('userDropdown').classList.toggle('show')">
+                        <span class="user-avatar">👤</span>
+                        <span class="user-name" id="navUserName">User</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="#" onclick="goToDashboard(); document.getElementById('userDropdown').classList.remove('show'); return false;">📊 My Dashboard</a>
+                        <a href="#" onclick="AuthManager.logout(); document.getElementById('userDropdown').classList.remove('show'); showToast('Logged out successfully'); return false;">🚪 Logout</a>
+                    </div>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="forest-layer forest-back"></div>
+            <div class="forest-layer forest-mid"></div>
+            <div class="forest-layer forest-front"></div>
+            <div class="mist-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <span class="hero-tagline translatable" data-en="Eazy Breath Guaranteed • 22 Wonder Herbs"
+                data-te="సులభమైన శ్వాస హామీ • 22 అద్భుత మూలికలు">Eazy Breath Guaranteed • 22 Wonder Herbs</span>
+            <h1 class="hero-title">
+                <span class="translatable" data-en="Breathe Easy with" data-te="సులభంగా శ్వాసించండి">Breathe Easy
+                    with</span> <span class="highlight">Swasa Kesari</span>
+            </h1>
+            <p class="hero-description translatable"
+                data-en="India's trusted Ayurvedic respiratory syrup for 17+ years. Natural relief from cough, cold, asthma & allergies with zero side effects."
+                data-te="భారతదేశంలో 17+ సంవత్సరాలుగా నమ్మకమైన ఆయుర్వేద శ్వాసకోశ సిరప్. దగ్గు, జలుబు, ఆస్తమా & అలర్జీల నుండి సున్నా దుష్ప్రభావాలతో సహజ ఉపశమనం.">
+                India's trusted Ayurvedic respiratory syrup for 17+ years. Natural relief from
+                cough, cold, asthma & allergies with zero side effects.
+            </p>
+            <div class="hero-buttons">
+                <a href="#product-journey" class="btn btn-primary">
+                    <span class="translatable" data-en="Discover Swasa Kesari"
+                        data-te="శ్వాస కేసరి తెలుసుకోండి">Discover Swasa Kesari</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <button class="translate-btn hero-translate" id="heroTranslateBtn" onclick="toggleLanguage()">
+                    <span class="translate-icon">🌐</span>
+                    <span class="translate-text" id="heroTranslateText">తెలుగులో చదవండి</span>
+                </button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">17+</span>
+                    <span class="stat-label translatable" data-en="Years Trusted" data-te="సంవత్సరాల నమ్మకం">Years
+                        Trusted</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">22</span>
+                    <span class="stat-label translatable" data-en="Natural Herbs" data-te="సహజ మూలికలు">Natural
+                        Herbs</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">1L+</span>
+                    <span class="stat-label translatable" data-en="Happy Customers" data-te="సంతోష కస్టమర్లు">Happy
+                        Customers</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span class="translatable" data-en="Scroll to Explore" data-te="అన్వేషించడానికి స్క్రోల్ చేయండి">Scroll to
+                Explore</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Product Journey Section - Single Rotating Product -->
+    <section class="product-journey" id="product-journey">
+        <div class="product-journey-container">
+
+            <!-- Fixed 3D Product on Left -->
+            <div class="product-3d-wrapper">
+                <div class="product-3d-scene">
+                    <!-- Model Viewer for Swasa Kesari GLB -->
+                    <model-viewer id="bottleModel" src="swasa kesari .glb" camera-controls auto-rotate
+                        shadow-intensity="1" exposure="1.2" environment-image="neutral" tone-mapping="aces"
+                        style="width: 100%; height: 500px; background: transparent;"></model-viewer>
+
+                    <!-- Glow Effect -->
+                    <div class="model-glow"></div>
+                </div>
+
+                <!-- Progress Indicator -->
+                <div class="scroll-progress-indicator">
+                    <div class="progress-dot active" data-target="about">
+                        <span class="dot-label translatable" data-en="About" data-te="గురించి">About</span>
+                    </div>
+                    <div class="progress-dot" data-target="ingredients">
+                        <span class="dot-label translatable" data-en="Ingredients"
+                            data-te="పదార్థాలు">Ingredients</span>
+                    </div>
+                    <div class="progress-dot" data-target="benefits">
+                        <span class="dot-label translatable" data-en="Benefits" data-te="ప్రయోజనాలు">Benefits</span>
+                    </div>
+                    <div class="progress-dot" data-target="usage">
+                        <span class="dot-label translatable" data-en="Usage" data-te="వాడకం">Usage</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scrollable Content Sections on Right -->
+            <div class="product-content-wrapper">
+
+                <!-- Section 1: About -->
+                <div class="product-section" id="section-about" data-section="about">
+                    <div class="section-content">
+                        <span class="content-tag translatable" data-en="About This Product"
+                            data-te="ఈ ఉత్పత్తి గురించి">About This Product</span>
+                        <h2 class="content-title"><span class="translatable" data-en="Swasa Kesari"
+                                data-te="శ్వాస కేసరి">Swasa Kesari</span> <span class="highlight translatable"
+                                data-en="Syrup" data-te="సిరప్">Syrup</span></h2>
+                        <p class="content-description translatable"
+                            data-en="Eazy Breath Guaranteed! Swasa Kesari is a powerful Ayurvedic syrup made from 22 WONDER herbs prescribed by the most ancient life science of India - Ayurveda. Unlike conventional medicine, it treats the root cause of illness, not just the symptoms."
+                            data-te="సులభమైన శ్వాస హామీ! శ్వాస కేసరి భారతదేశపు అత్యంత పురాతన జీవ శాస్త్రం - ఆయుర్వేదంలో సూచించిన 22 అద్భుత మూలికలతో తయారైన శక్తివంతమైన ఆయుర్వేద సిరప్. సాధారణ మందుల వలె కాకుండా, ఇది లక్షణాలను మాత్రమే కాకుండా వ్యాధికి మూల కారణాన్ని చికిత్స చేస్తుంది.">
+                            <strong>Eazy Breath Guaranteed!</strong> Swasa Kesari is a powerful Ayurvedic syrup made
+                            from
+                            22 WONDER herbs prescribed by the most ancient life science of India - Ayurveda.
+                            Unlike conventional medicine, it treats the root cause of illness, not just the symptoms.
+                        </p>
+                        <p class="content-description translatable"
+                            data-en="With 17 years of successful history, Swasa Kesari effectively treats Common Colds, Severe Coughs, Dust Allergy, Wheezing, Sinusitis, and Rhinitis. The herbs are carefully selected to form a powerful blend of natural broncho-dilators and anti-allergants."
+                            data-te="17 సంవత్సరాల విజయవంతమైన చరిత్రతో, శ్వాస కేసరి సాధారణ జలుబులు, తీవ్రమైన దగ్గులు, డస్ట్ అలర్జీ, గురక, సైనసైటిస్ మరియు రినిటిస్‌లను సమర్థవంతంగా చికిత్స చేస్తుంది. సహజ బ్రాంకో-డైలేటర్లు మరియు యాంటీ-అలర్జెంట్ల శక్తివంతమైన మిశ్రమాన్ని రూపొందించడానికి మూలికలు జాగ్రత్తగా ఎంపిక చేయబడ్డాయి.">
+                            With 17 years of successful history, Swasa Kesari effectively treats Common Colds, Severe
+                            Coughs,
+                            Dust Allergy, Wheezing, Sinusitis, and Rhinitis. The herbs are carefully selected to form a
+                            powerful blend of natural broncho-dilators and anti-allergants.
+                        </p>
+                        <div class="content-highlight-box">
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🌿</span>
+                                <span class="highlight-text translatable" data-en="100% Natural"
+                                    data-te="100% సహజం">100% Natural</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">⭐</span>
+                                <span class="highlight-text translatable" data-en="Made in India"
+                                    data-te="మేడ్ ఇన్ ఇండియా">Made in India</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🏆</span>
+                                <span class="highlight-text translatable" data-en="17 Years Trusted"
+                                    data-te="17 సంవత్సరాల నమ్మకం">17 Years Trusted</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Ingredients -->
+                <div class="product-section" id="section-ingredients" data-section="ingredients">
+                    <div class="section-content">
+                        <span class="content-tag translatable" data-en="22 Wonder Herbs" data-te="22 అద్భుత మూలికలు">22
+                            Wonder Herbs</span>
+                        <h2 class="content-title"><span class="translatable" data-en="Precious"
+                                data-te="విలువైన">Precious</span> <span class="highlight translatable"
+                                data-en="Ingredients" data-te="పదార్థాలు">Ingredients</span></h2>
+                        <p class="content-description translatable"
+                            data-en="A blend of carefully handpicked natural herbs that work together as powerful broncho-dilators and anti-allergants. No steroids or synthetic chemicals."
+                            data-te="శక్తివంతమైన బ్రాంకో-డైలేటర్లు మరియు యాంటీ-అలర్జెంట్లుగా కలిసి పని చేసే జాగ్రత్తగా ఎంపిక చేసిన సహజ మూలికల మిశ్రమం. స్టెరాయిడ్స్ లేదా సింథటిక్ రసాయనాలు లేవు.">
+                            A blend of carefully handpicked natural herbs that work together as powerful
+                            broncho-dilators and anti-allergants. No steroids or synthetic chemicals.
+                        </p>
+
+                        <div class="ingredients-list">
+                            <div class="ingredient-item">
+                                <div class="ingredient-icon">🍀</div>
+                                <div class="ingredient-details">
+                                    <h4 class="translatable" data-en="Terminalia Chebula & Bellirica"
+                                        data-te="టెర్మినాలియా చెబులా & బెలిరికా">Terminalia Chebula & Bellirica</h4>
+                                    <p class="translatable"
+                                        data-en="Powerful detoxifiers that cleanse the respiratory system"
+                                        data-te="శ్వాసకోశ వ్యవస్థను శుభ్రపరిచే శక్తివంతమైన డిటాక్సిఫైయర్లు">Powerful
+                                        detoxifiers that cleanse the respiratory system</p>
+                                </div>
+                            </div>
+                            <div class="ingredient-item">
+                                <div class="ingredient-icon">🌱</div>
+                                <div class="ingredient-details">
+                                    <h4 class="translatable" data-en="Withania Somnifera (Ashwagandha)"
+                                        data-te="విథానియా సోమ్నిఫెరా (అశ్వగంధ)">Withania Somnifera (Ashwagandha)</h4>
+                                    <p class="translatable"
+                                        data-en="Boosts immunity and strengthens the body's defense system"
+                                        data-te="రోగనిరోధక శక్తిని పెంచుతుంది మరియు శరీర రక్షణ వ్యవస్థను బలపరుస్తుంది">
+                                        Boosts immunity and strengthens the body's defense system</p>
+                                </div>
+                            </div>
+                            <div class="ingredient-item">
+                                <div class="ingredient-icon">🔥</div>
+                                <div class="ingredient-details">
+                                    <h4 class="translatable" data-en="Piper Longum & Piper Nigrum"
+                                        data-te="పైపర్ లాంగమ్ & పైపర్ నైగ్రమ్">Piper Longum & Piper Nigrum</h4>
+                                    <p class="translatable"
+                                        data-en="Natural expectorants that clear nasal and respiratory passages"
+                                        data-te="ముక్కు మరియు శ్వాసకోశ మార్గాలను శుభ్రపరిచే సహజ ఎక్స్‌పెక్టొరెంట్లు">
+                                        Natural expectorants that clear nasal and respiratory passages</p>
+                                </div>
+                            </div>
+                            <div class="ingredient-item">
+                                <div class="ingredient-icon">🍯</div>
+                                <div class="ingredient-details">
+                                    <h4 class="translatable" data-en="Glycyrrhiza Glabra (Licorice)"
+                                        data-te="గ్లైసిర్రిజా గ్లాబ్రా (అతిమధురం)">Glycyrrhiza Glabra (Licorice)</h4>
+                                    <p class="translatable"
+                                        data-en="Soothes throat irritation and supports respiratory health"
+                                        data-te="గొంతు చికాకును తగ్గిస్తుంది మరియు శ్వాసకోశ ఆరోగ్యానికి సహాయపడుతుంది">
+                                        Soothes throat irritation and supports respiratory health</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="purity-badge">
+                            <span class="translatable" data-en="✓ No Steroids" data-te="✓ స్టెరాయిడ్స్ లేవు">✓ No
+                                Steroids</span>
+                            <span class="translatable" data-en="✓ No Side Effects" data-te="✓ దుష్ప్రభావాలు లేవు">✓ No
+                                Side Effects</span>
+                            <span class="translatable" data-en="✓ OTC Product" data-te="✓ OTC ఉత్పత్తి">✓ OTC
+                                Product</span>
+                            <span class="translatable" data-en="✓ 22 Natural Herbs" data-te="✓ 22 సహజ మూలికలు">✓ 22
+                                Natural Herbs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Benefits -->
+                <div class="product-section" id="section-benefits" data-section="benefits">
+                    <div class="section-content">
+                        <span class="content-tag translatable" data-en="Health Benefits"
+                            data-te="ఆరోగ్య ప్రయోజనాలు">Health Benefits</span>
+                        <h2 class="content-title"><span class="translatable" data-en="Respiratory"
+                                data-te="శ్వాసకోశ">Respiratory</span> <span class="highlight translatable"
+                                data-en="Wellness" data-te="ఆరోగ్యం">Wellness</span></h2>
+                        <p class="content-description translatable"
+                            data-en="Experience quick relief from respiratory issues with this time-tested Ayurvedic formula that has helped thousands of people breathe easy for over 17 years."
+                            data-te="17 సంవత్సరాలకు పైగా వేలాది మందికి సులభంగా శ్వాసించడంలో సహాయపడిన ఈ కాలపరీక్షిత ఆయుర్వేద ఫార్ములాతో శ్వాసకోశ సమస్యల నుండి సత్వర ఉపశమనం పొందండి.">
+                            Experience quick relief from respiratory issues with this time-tested Ayurvedic formula
+                            that has helped thousands of people breathe easy for over 17 years.
+                        </p>
+
+                        <div class="benefits-grid">
+                            <div class="benefit-card">
+                                <div class="benefit-icon">💨</div>
+                                <h4 class="translatable" data-en="Eazy Breathing" data-te="సులభమైన శ్వాస">Eazy Breathing
+                                </h4>
+                                <p class="translatable" data-en="Works as a natural broncho-dilator for instant relief"
+                                    data-te="తక్షణ ఉపశమనం కోసం సహజ బ్రాంకో-డైలేటర్‌గా పనిచేస్తుంది">Works as a natural
+                                    broncho-dilator for instant relief</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-icon">🌬️</div>
+                                <h4 class="translatable" data-en="Asthma, Sinus & Dust Allergy"
+                                    data-te="ఆస్తమా.. సైనస్.. డస్ట్ అలర్జీ">Asthma, Sinus & Dust Allergy</h4>
+                                <p class="translatable"
+                                    data-en="Effectively treats asthma, sinus problems & dust allergies"
+                                    data-te="ఆస్తమా, సైనస్ సమస్యలు & డస్ట్ అలర్జీలకు సమర్థవంతంగా చికిత్స చేస్తుంది">
+                                    Effectively treats asthma, sinus problems & dust allergies</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-icon">💧</div>
+                                <h4 class="translatable" data-en="Natural Expectorant" data-te="సహజ ఎక్స్‌పెక్టొరెంట్">
+                                    Natural Expectorant</h4>
+                                <p class="translatable" data-en="Clears respiratory passages and removes congestion"
+                                    data-te="శ్వాసకోశ మార్గాలను శుభ్రపరుస్తుంది మరియు రద్దీని తొలగిస్తుంది">Clears
+                                    respiratory passages and removes congestion</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-icon">💪</div>
+                                <h4 class="translatable" data-en="Immunity Booster" data-te="రోగనిరోధక శక్తి బూస్టర్">
+                                    Immunity Booster</h4>
+                                <p class="translatable" data-en="Anti-oxidants that strengthen your immune system"
+                                    data-te="మీ రోగనిరోధక వ్యవస్థను బలపర్చే యాంటీ-ఆక్సిడెంట్లు">Anti-oxidants that
+                                    strengthen your immune system</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-icon">👃</div>
+                                <h4 class="translatable" data-en="Nasal Health" data-te="ముక్కు ఆరోగ్యం">Nasal Health
+                                </h4>
+                                <p class="translatable"
+                                    data-en="Supports healthy sinuses and treats sinusitis & rhinitis"
+                                    data-te="ఆరోగ్యకరమైన సైనస్‌లకు మద్దతు ఇస్తుంది మరియు సైనసైటిస్ & రినిటిస్‌లకు చికిత్స చేస్తుంది">
+                                    Supports healthy sinuses and treats sinusitis & rhinitis</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-icon">🌿</div>
+                                <h4 class="translatable" data-en="Lung Detox" data-te="ఊపిరితిత్తుల డిటాక్స్">Lung Detox
+                                </h4>
+                                <p class="translatable"
+                                    data-en="Cleanses and detoxifies lungs for better respiratory health"
+                                    data-te="మెరుగైన శ్వాసకోశ ఆరోగ్యం కోసం ఊపిరితిత్తులను శుభ్రపరుస్తుంది మరియు డిటాక్సిఫై చేస్తుంది">
+                                    Cleanses and detoxifies lungs for better respiratory health</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: How to Use -->
+                <div class="product-section" id="section-usage" data-section="usage">
+                    <div class="section-content">
+                        <span class="content-tag translatable" data-en="Directions" data-te="దిశలు">Directions</span>
+                        <h2 class="content-title"><span class="translatable" data-en="How to" data-te="ఎలా">How
+                                to</span> <span class="highlight translatable" data-en="Use"
+                                data-te="ఉపయోగించాలి">Use</span></h2>
+                        <p class="content-description translatable"
+                            data-en="Follow these guidelines for maximum benefit. Swasa Kesari is completely natural and safe for long-term use without any side effects."
+                            data-te="గరిష్ట ప్రయోజనం కోసం ఈ మార్గదర్శకాలను అనుసరించండి. శ్వాస కేసరి పూర్తిగా సహజమైనది మరియు దుష్ప్రభావాలు లేకుండా దీర్ఘకాలిక వినియోగానికి సురక్షితం.">
+                            Follow these guidelines for maximum benefit. Swasa Kesari is completely natural
+                            and safe for long-term use without any side effects.
+                        </p>
+
+                        <div class="usage-steps">
+                            <div class="usage-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4 class="translatable" data-en="Shake Well" data-te="బాగా కదపండి">Shake Well</h4>
+                                    <p class="translatable"
+                                        data-en="Shake the bottle vigorously before use as natural herbs may thicken over time"
+                                        data-te="సహజ మూలికలు కాలక్రమేణా చిక్కగా మారవచ్చు కాబట్టి వాడే ముందు బాటిల్ బాగా కదపండి">
+                                        Shake the bottle vigorously before use as natural herbs may thicken over time
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="usage-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4 class="translatable" data-en="Dosage" data-te="మోతాదు">Dosage</h4>
+                                    <p class="translatable"
+                                        data-en="Take 10ml twice a day (morning and evening). Suitable for all ages"
+                                        data-te="రోజుకు రెండుసార్లు 10ml తీసుకోండి (ఉదయం మరియు సాయంత్రం). అన్ని వయసుల వారికి అనుకూలం">
+                                        Take 10ml twice a day (morning and evening). Suitable for all ages</p>
+                                </div>
+                            </div>
+                            <div class="usage-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4 class="translatable" data-en="Stay Hydrated" data-te="హైడ్రేటెడ్‌గా ఉండండి">Stay
+                                        Hydrated</h4>
+                                    <p class="translatable"
+                                        data-en="Drink 10-15 glasses of water daily for best results"
+                                        data-te="ఉత్తమ ఫలితాల కోసం రోజుకు 10-15 గ్లాసుల నీరు త్రాగండి">Drink 10-15
+                                        glasses of water daily for best results</p>
+                                </div>
+                            </div>
+                            <div class="usage-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4 class="translatable" data-en="Duration" data-te="వ్యవధి">Duration</h4>
+                                    <p class="translatable"
+                                        data-en="Use consistently for at least 90 days, then gradually reduce dosage"
+                                        data-te="కనీసం 90 రోజులు స్థిరంగా వాడండి, ఆపై క్రమంగా మోతాదును తగ్గించండి">Use
+                                        consistently for at least 90 days, then gradually reduce dosage</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-cta">
+                            <div class="price-tag">
+                                <span class="price">₹699</span>
+                                <span class="quantity translatable" data-en="200ml Bottle" data-te="200ml సీసా">200ml
+                                    Bottle</span>
+                            </div>
+                            <button class="btn btn-primary btn-large" onclick="openCheckout()">
+                                <span class="translatable" data-en="Buy Now" data-te="ఇప్పుడు కొనండి">Buy
+                                    Now</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="section-tag translatable" data-en="Get in Touch" data-te="సంప్రదించండి">Get in
+                        Touch</span>
+                    <h2 class="section-title"><span class="translatable" data-en="Order"
+                            data-te="ఆర్డర్ చేయండి">Order</span> <span class="highlight">Swasa Kesari</span></h2>
+                    <p class="translatable"
+                        data-en="Have questions about Swasa Kesari or need guidance on respiratory wellness? Our Ayurvedic experts are here to help you breathe easy."
+                        data-te="శ్వాస కేసరి గురించి ప్రశ్నలు ఉన్నాయా లేదా శ్వాసకోశ ఆరోగ్యంపై మార్గదర్శకత్వం కావాలా? మీకు సులభంగా శ్వాసించడంలో సహాయపడటానికి మా ఆయుర్వేద నిపుణులు ఇక్కడ ఉన్నారు.">
+                        Have questions about Swasa Kesari or need guidance on respiratory wellness? Our Ayurvedic
+                        experts
+                        are
+                        here to help you breathe easy.</p>
+
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <h4 class="translatable" data-en="Visit Us" data-te="మాకు సందర్శించండి">Visit Us</h4>
+                                <p class="translatable" data-en="Sampurna Ayurvedic Center, Hyderabad, Telangana"
+                                    data-te="సంపూర్ణ ఆయుర్వేదిక్ సెంటర్, హైదరాబాద్, తెలంగాణ">Sampurna Ayurvedic
+                                    Center<br>Hyderabad, Telangana</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <div>
+                                <h4 class="translatable" data-en="Call Us" data-te="కాల్ చేయండి">Call Us</h4>
+                                <p>+91 9010547855</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">💬</span>
+                            <div>
+                                <h4 class="translatable" data-en="WhatsApp Us" data-te="వాట్సాప్ చేయండి">WhatsApp Us
+                                </h4>
+                                <p><a href="https://wa.me/919010547855" target="_blank"
+                                        style="color: #25D366; text-decoration: none;">+91 9010547855</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Your Name" required>
+                            <label for="name" class="translatable" data-en="Your Name" data-te="మీ పేరు">Your
+                                Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Your Email" required>
+                            <label for="email" class="translatable" data-en="Your Email" data-te="మీ ఇమెయిల్">Your
+                                Email</label>
+                        </div>
+                        <div class="form-group">
+                            <select id="interest" required>
+                                <option value="" disabled selected class="translatable" data-en="I'm interested in..."
+                                    data-te="నాకు ఆసక్తి ఉంది...">I'm interested in...</option>
+                                <option value="swasa-kesari" class="translatable" data-en="Swasa Kesari Syrup"
+                                    data-te="శ్వాస కేసరి సిరప్">Swasa Kesari Syrup</option>
+                                <option value="consultation" class="translatable" data-en="Respiratory Consultation"
+                                    data-te="శ్వాసకోశ సంప్రదింపు">Respiratory Consultation</option>
+                                <option value="wholesale" class="translatable" data-en="Wholesale Inquiry"
+                                    data-te="హోల్‌సేల్ విచారణ">Wholesale Inquiry</option>
+                                <option value="other" class="translatable" data-en="Other" data-te="ఇతర">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+                            <label for="message" class="translatable" data-en="Your Message" data-te="మీ సందేశం">Your
+                                Message</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span class="translatable" data-en="Send Message" data-te="సందేశం పంపండి">Send
+                                Message</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag translatable" data-en="Customer Stories" data-te="కస్టమర్ కథలు">Customer
+                    Stories</span>
+                <h2 class="section-title"><span class="translatable" data-en="Breathing"
+                        data-te="శ్వాసించడం">Breathing</span> <span class="highlight translatable" data-en="Easy Again"
+                        data-te="మళ్ళీ సులభం">Easy Again</span></h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">"</div>
+                        <p class="translatable"
+                            data-en="My son had severe cough every winter. After using Swasa Kesari for 3 months, his respiratory health has improved dramatically. No more sleepless nights!"
+                            data-te="నా కొడుకుకు ప్రతి శీతాకాలంలో తీవ్రమైన దగ్గు వచ్చేది. 3 నెలలు శ్వాస కేసరి వాడిన తర్వాత, అతని శ్వాసకోశ ఆరోగ్యం బాగా మెరుగుపడింది. ఇకపై నిద్రలేని రాత్రులు లేవు!">
+                            My son had severe cough every winter. After using Swasa Kesari for 3 months, his
+                            respiratory health has improved dramatically. No more sleepless nights!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👩</div>
+                        <div class="author-info">
+                            <h4>Lakshmi Devi</h4>
+                            <span class="translatable" data-en="Mother, Hyderabad" data-te="తల్లి, హైదరాబాద్">Mother,
+                                Hyderabad</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card featured">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">"</div>
+                        <p class="translatable"
+                            data-en="I suffered from chronic sinusitis for years. Swasa Kesari gave me relief within weeks. Zero side effects! Sampurna Ayurvedic has earned a customer for life."
+                            data-te="నేను సంవత్సరాలుగా దీర్ఘకాలిక సైనసైటిస్‌తో బాధపడ్డాను. శ్వాస కేసరి వారాల్లో నాకు ఉపశమనం ఇచ్చింది. దుష్ప్రభావాలు సున్నా! సంపూర్ణ ఆయుర్వేదిక్ జీవితకాల కస్టమర్‌ను సంపాదించుకుంది.">
+                            I suffered from chronic sinusitis for years. Swasa Kesari gave me relief within weeks.
+                            Zero side effects! Sampurna Ayurvedic has earned a customer for life.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👨</div>
+                        <div class="author-info">
+                            <h4>Rajesh Kumar</h4>
+                            <span class="translatable" data-en="IT Professional, Bangalore"
+                                data-te="IT ప్రొఫెషనల్, బెంగళూరు">IT Professional, Bangalore</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">"</div>
+                        <p class="translatable"
+                            data-en="As an asthma patient, I was skeptical. But Swasa Kesari's 22 herbs formula really works! I can breathe easier now and my inhaler use has reduced significantly."
+                            data-te="ఆస్తమా రోగిగా, నేను సందేహంలో ఉన్నాను. కానీ శ్వాస కేసరి యొక్క 22 మూలికల ఫార్ములా నిజంగా పనిచేస్తుంది! నేను ఇప్పుడు సులభంగా శ్వాసించగలను మరియు నా ఇన్‌హేలర్ వాడకం గణనీయంగా తగ్గింది.">
+                            As an asthma patient, I was skeptical. But Swasa Kesari's 22 herbs formula really works!
+                            I can breathe easier now and my inhaler use has reduced significantly.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👩</div>
+                        <div class="author-info">
+                            <h4>Priya Menon</h4>
+                            <span class="translatable" data-en="Teacher, Chennai"
+                                data-te="ఉపాధ్యాయురాలు, చెన్నై">Teacher, Chennai</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-icon">🌿</span>
+                        <span class="logo-text">Sampurna Ayurvedic</span>
+                    </a>
+                    <p class="translatable"
+                        data-en="Bringing the ancient wisdom of Ayurveda to modern wellness seekers worldwide."
+                        data-te="ఆయుర్వేద పురాతన జ్ఞానాన్ని ప్రపంచవ్యాప్తంగా ఆధునిక ఆరోగ్య అన్వేషకులకు అందించడం.">
+                        Bringing the ancient wisdom of Ayurveda to modern wellness seekers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4 class="translatable" data-en="Quick Links" data-te="సత్వర లింకులు">Quick Links</h4>
+                    <ul>
+                        <li><a href="#home" class="translatable" data-en="Home" data-te="హోమ్">Home</a></li>
+                        <li><a href="#product-journey" class="translatable" data-en="Product"
+                                data-te="ఉత్పత్తి">Product</a></li>
+                        <li><a href="#testimonials" class="translatable" data-en="Testimonials"
+                                data-te="సమీక్షలు">Testimonials</a></li>
+                        <li><a href="#contact" class="translatable" data-en="Contact" data-te="సంప్రదించండి">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4 class="translatable" data-en="Product Info" data-te="ఉత్పత్తి సమాచారం">Product Info</h4>
+                    <ul>
+                        <li><a href="#section-about" class="translatable" data-en="About" data-te="గురించి">About</a>
+                        </li>
+                        <li><a href="#section-ingredients" class="translatable" data-en="Ingredients"
+                                data-te="పదార్థాలు">Ingredients</a></li>
+                        <li><a href="#section-benefits" class="translatable" data-en="Benefits"
+                                data-te="ప్రయోజనాలు">Benefits</a></li>
+                        <li><a href="#section-usage" class="translatable" data-en="How to Use"
+                                data-te="ఎలా ఉపయోగించాలి">How to Use</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4 class="translatable" data-en="Support" data-te="సహాయం">Support</h4>
+                    <ul>
+                        <li><a href="#" class="translatable" data-en="FAQ" data-te="తరచుగా అడిగే ప్రశ్నలు">FAQ</a></li>
+                        <li><a href="#" class="translatable" data-en="Shipping" data-te="షిప్పింగ్">Shipping</a></li>
+                        <li><a href="#" class="translatable" data-en="Returns" data-te="రిటర్న్స్">Returns</a></li>
+                        <li><a href="#contact" class="translatable" data-en="Contact" data-te="సంప్రదించండి">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="translatable"
+                    data-en="© 2026 Sampurna Ayurvedic. All rights reserved. Crafted with 🌿 and ancient wisdom."
+                    data-te="© 2026 సంపూర్ణ ఆయుర్వేదిక్. అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి. 🌿 మరియు పురాతన జ్ఞానంతో రూపొందించబడింది.">
+                    &copy; 2026 Sampurna Ayurvedic. All rights reserved. Crafted with 🌿 and ancient wisdom.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======================== -->
+    <!-- Login Modal -->
+    <!-- ======================== -->
+    <div class="auth-modal" id="loginModal">
+        <div class="auth-modal-content">
+            <button class="modal-close" onclick="ModalController.close('loginModal')">✕</button>
+            <div class="modal-header">
+                <span class="modal-icon">🌿</span>
+                <h3>Welcome Back</h3>
+                <p>Sign in to your Sampurna Ayurvedic account</p>
+            </div>
+            <form id="loginForm">
+                <div class="modal-form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required minlength="6">
+                </div>
+                <div class="form-error" id="loginError"></div>
+                <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+            </form>
+            <div class="modal-footer">
+                <p><a href="#" onclick="ModalController.switchTo('loginModal','forgotModal'); return false;">Forgot Password?</a></p>
+                <p>Don't have an account? <a href="#" onclick="ModalController.switchTo('loginModal','signupModal'); return false;">Create one</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- Signup Modal -->
+    <!-- ======================== -->
+    <div class="auth-modal" id="signupModal">
+        <div class="auth-modal-content">
+            <button class="modal-close" onclick="ModalController.close('signupModal')">✕</button>
+            <div class="modal-header">
+                <span class="modal-icon">🍃</span>
+                <h3>Join Sampurna</h3>
+                <p>Create your account for a personalized wellness journey</p>
+            </div>
+            <form id="signupForm">
+                <div class="modal-form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" placeholder="Your full name" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" placeholder="your@email.com" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="signupPhone">Phone Number</label>
+                    <input type="tel" id="signupPhone" placeholder="+91 XXXXX XXXXX">
+                </div>
+                <div class="modal-form-row">
+                    <div class="modal-form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" placeholder="Min 6 characters" required minlength="6">
+                    </div>
+                    <div class="modal-form-group">
+                        <label for="signupConfirmPassword">Confirm</label>
+                        <input type="password" id="signupConfirmPassword" placeholder="Confirm password" required minlength="6">
+                    </div>
+                </div>
+                <div class="form-error" id="signupError"></div>
+                <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+            </form>
+            <div class="modal-footer">
+                <p>Already have an account? <a href="#" onclick="ModalController.switchTo('signupModal','loginModal'); return false;">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- Email Verify OTP Modal -->
+    <!-- ======================== -->
+    <div class="auth-modal" id="verifyModal">
+        <div class="auth-modal-content">
+            <button class="modal-close" onclick="ModalController.close('verifyModal')">✕</button>
+            <div class="modal-header">
+                <span class="modal-icon">📧</span>
+                <h3>Verify Your Email</h3>
+                <p>We sent a 6-digit code to <strong id="verifyEmail">your email</strong></p>
+            </div>
+            <form id="verifyForm">
+                <div class="otp-input-group">
+                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                </div>
+                <div class="form-error" id="verifyError"></div>
+                <button type="submit" class="btn btn-primary btn-full">Verify Email</button>
+            </form>
+            <div class="otp-resend">
+                <p>Didn't receive a code? <a onclick="resendVerifyOtp()">Resend</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- Forgot Password Modal -->
+    <!-- ======================== -->
+    <div class="auth-modal" id="forgotModal">
+        <div class="auth-modal-content">
+            <button class="modal-close" onclick="ModalController.close('forgotModal')">✕</button>
+            <div class="modal-header">
+                <span class="modal-icon">🔑</span>
+                <h3>Reset Password</h3>
+                <p>We'll send a reset code to your email</p>
+            </div>
+
+            <!-- Step 1: Enter Email -->
+            <div id="forgotStep1">
+                <form id="forgotEmailForm">
+                    <div class="modal-form-group">
+                        <label for="forgotEmail">Email Address</label>
+                        <input type="email" id="forgotEmail" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-error" id="forgotError"></div>
+                    <button type="submit" class="btn btn-primary btn-full">Send Reset Code</button>
+                </form>
+            </div>
+
+            <!-- Step 2: Enter OTP + New Password -->
+            <div id="forgotStep2" style="display:none;">
+                <form id="resetForm">
+                    <p style="text-align:center;color:var(--text-light);margin-bottom:16px;">Enter the 6-digit code sent to your email</p>
+                    <div class="otp-input-group" id="forgotOtpSection">
+                        <input type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                        <input type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                        <input type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                        <input type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                        <input type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                        <input type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                    </div>
+                    <div class="modal-form-group">
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" placeholder="Min 6 characters" required minlength="6">
+                    </div>
+                    <div class="modal-form-group">
+                        <label for="confirmNewPassword">Confirm Password</label>
+                        <input type="password" id="confirmNewPassword" placeholder="Confirm new password" required minlength="6">
+                    </div>
+                    <div class="form-error" id="resetError"></div>
+                    <button type="submit" class="btn btn-primary btn-full">Reset Password</button>
+                </form>
+                <div class="otp-resend">
+                    <p>Didn't receive a code? <a onclick="resendResetOtp()">Resend</a></p>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <p>Remember your password? <a href="#" onclick="ModalController.switchTo('forgotModal','loginModal'); return false;">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- Checkout Modal -->
+    <!-- ======================== -->
+    <div class="auth-modal" id="checkoutModal">
+        <div class="auth-modal-content" style="max-width:520px;">
+            <button class="modal-close" onclick="ModalController.close('checkoutModal')">✕</button>
+
+            <!-- Step Indicators -->
+            <div class="checkout-steps">
+                <div class="checkout-step-dot active" data-step="1"><span>1</span><small>Quantity</small></div>
+                <div class="checkout-step-line"></div>
+                <div class="checkout-step-dot" data-step="2"><span>2</span><small>Address</small></div>
+                <div class="checkout-step-line"></div>
+                <div class="checkout-step-dot" data-step="3"><span>3</span><small>Payment</small></div>
+                <div class="checkout-step-line"></div>
+                <div class="checkout-step-dot" data-step="4"><span>4</span><small>Done</small></div>
+            </div>
+
+            <!-- Step 1: Quantity -->
+            <div class="checkout-panel active" id="checkoutStep1">
+                <div class="checkout-product">
+                    <div class="product-emoji">🌿</div>
+                    <h3>Swasa Kesari Syrup</h3>
+                    <p class="product-subtitle">200ml Bottle — ₹699 each</p>
+                </div>
+                <div class="qty-selector">
+                    <button class="qty-btn" onclick="changeQty(-1)">−</button>
+                    <span class="qty-value" id="qtyDisplay">1</span>
+                    <button class="qty-btn" onclick="changeQty(1)">+</button>
+                </div>
+                <div class="checkout-summary">
+                    <div class="summary-row">
+                        <span>Price per bottle</span>
+                        <span>₹699</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Quantity</span>
+                        <span id="qtyValue">1</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span>Total</span>
+                        <strong id="totalDisplay">₹699</strong>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-full" onclick="goToStep(2)">Continue to Address →</button>
+            </div>
+
+            <!-- Step 2: Address -->
+            <div class="checkout-panel" id="checkoutStep2">
+                <h3 style="text-align:center;margin-bottom:20px;">📍 Delivery Address</h3>
+                <div class="modal-form-group">
+                    <label for="shipping_name">Full Name</label>
+                    <input type="text" id="shipping_name" placeholder="Recipient name" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="shipping_phone">Phone Number</label>
+                    <input type="tel" id="shipping_phone" placeholder="+91 XXXXX XXXXX" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="shipping_address">Address</label>
+                    <input type="text" id="shipping_address" placeholder="House/Flat, Street, Landmark" required>
+                </div>
+                <div class="modal-form-row">
+                    <div class="modal-form-group">
+                        <label for="shipping_city">City</label>
+                        <input type="text" id="shipping_city" placeholder="City" required>
+                    </div>
+                    <div class="modal-form-group">
+                        <label for="shipping_pincode">Pincode</label>
+                        <input type="text" id="shipping_pincode" placeholder="6 digits" maxlength="6" required>
+                    </div>
+                </div>
+                <div class="modal-form-group">
+                    <label for="shipping_state">State</label>
+                    <select id="shipping_state" required style="width:100%;padding:14px 16px;border:2px solid rgba(0,0,0,0.08);border-radius:12px;font-family:var(--font-body);font-size:0.95rem;background:rgba(255,255,255,0.8);">
+                        <option value="">Select State</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Telangana" selected>Telangana</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="West Bengal">West Bengal</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Odisha">Odisha</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                    </select>
+                </div>
+                <div class="form-error" id="addressError"></div>
+                <div style="display:flex;gap:12px;">
+                    <button class="btn btn-outline" onclick="goToStep(1)" style="flex:1;">← Back</button>
+                    <button class="btn btn-primary" onclick="goToStep(3)" style="flex:2;">Continue to Payment →</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Payment -->
+            <div class="checkout-panel" id="checkoutStep3">
+                <h3 style="text-align:center;margin-bottom:8px;">💳 Payment Method</h3>
+                <p style="text-align:center;color:var(--text-light);margin-bottom:20px;">Order Total: <strong id="payTotal">₹699</strong></p>
+
+                <div class="payment-options">
+                    <div class="payment-option selected" data-method="online" onclick="selectPaymentMethod('online')">
+                        <div class="pay-icon">💳</div>
+                        <div class="pay-info">
+                            <strong>Pay Online</strong>
+                            <p>UPI, Card, Net Banking — Pay <span id="onlineAmt">₹699</span> now</p>
+                        </div>
+                        <div class="pay-check">✓</div>
+                    </div>
+
+                    <div class="payment-option" data-method="cod" onclick="selectPaymentMethod('cod')">
+                        <div class="pay-icon">🏠</div>
+                        <div class="pay-info">
+                            <strong>Cash on Delivery</strong>
+                            <p>Pay 100% on delivery (Cash / UPI at doorstep)</p>
+                        </div>
+                        <div class="pay-check">✓</div>
+                    </div>
+                </div>
+
+                <div id="codInfo" style="display:none;background:rgba(46,125,50,0.1);padding:14px;border-radius:12px;margin:16px 0;text-align:center;font-size:0.9rem;color:#1b5e20;">
+                    <strong>💵 Cash on Delivery:</strong> No advance fee required!<br>
+                    <span>Pay full amount when package arrives at your doorstep.</span>
+                </div>
+
+                <div style="display:flex;gap:12px;margin-top:16px;">
+                    <button class="btn btn-outline" onclick="goToStep(2)" style="flex:1;">← Back</button>
+                    <button class="btn btn-primary" id="payNowBtn" onclick="processPayment()" style="flex:2;">Pay ₹699</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Confirmation -->
+            <div class="checkout-panel" id="checkoutStep4">
+                <div id="confirmationContent">
+                    <div class="dash-loading">Processing your order...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Translate Button -->
+    <button class="translate-btn mobile-translate" id="mobileTranslateBtn" onclick="toggleLanguage()">
+        <span class="translate-icon">🌐</span>
+        <span class="translate-text" id="mobileTranslateText">తెలుగు</span>
+    </button>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

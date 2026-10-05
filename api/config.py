@@ -28,7 +28,7 @@ class Config:
     JWT_HEADER_TYPE = 'Bearer'
 
     # Static files (frontend)
-    STATIC_FOLDER = os.path.abspath(os.path.join(BASE_DIR, '..', 'public'))
+    STATIC_FOLDER = os.path.abspath(os.path.join(BASE_DIR, '..'))
 
     # OTP Settings
     OTP_EXPIRY_MINUTES = 10
