@@ -1,6 +1,51 @@
 {
-  "rewrites": [
-    { "source": "/admin", "destination": "/admin.html" },
-    { "source": "/dashboard", "destination": "/dashboard.html" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "web/ayurvedic-website/backend/app.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "web/ayurvedic-website/index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "web/ayurvedic-website/dashboard.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "web/ayurvedic-website/admin.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "web/ayurvedic-website/css/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "web/ayurvedic-website/js/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "web/ayurvedic-website/backend/app.py"
+    },
+    {
+      "src": "/admin",
+      "dest": "web/ayurvedic-website/admin.html"
+    },
+    {
+      "src": "/dashboard",
+      "dest": "web/ayurvedic-website/dashboard.html"
+    },
+    {
+      "src": "/",
+      "dest": "web/ayurvedic-website/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "web/ayurvedic-website/$1"
+    }
   ]
 }
